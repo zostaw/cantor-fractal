@@ -15,15 +15,15 @@ def cantor(y, generations):
         y[:int(len(y)/3)] = y[int(2*len(y)/3):] = cantor(y[:int(len(y)/3)], generations-1)
         return y
 
-generations = 10
+GENERATIONS = 10
 UPSAMPLE_RATE = 100
 # upsample rate refers to how slowly should fractal be zoomed
 # minimum: 2, maximum: fractal_resolution
-# good value is something like 100
+# good value depends on resolution of the fractal
 # rate of 2 means at single iteration frames are cut by half
 # rate of 10 means every 10th sample will be cut
 
-fractal_resolution = 3**generations
+fractal_resolution = 3**GENERATIONS
 # 3 is a multiplier for resolution of generation of Cantor set: i.e.:
 #    1st generation 3**1: [1, 0, 1]
 #    2nd generation 3**2: [1, 0, 1, 0, 0, 0, 1, 0, 1]
@@ -35,7 +35,7 @@ y = np.ones_like(x)
 print(f"fractal resolution: {fractal_resolution}")
 
 # generate fractal
-y = cantor(y, generations)
+y = cantor(y, GENERATIONS)
 
 def zoom_fractal(x, y):
     for i in range(int(len(x)/UPSAMPLE_RATE)):
