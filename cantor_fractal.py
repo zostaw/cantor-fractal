@@ -51,4 +51,9 @@ for i in tqdm(range(3*UPSAMPLE_RATE)):
 
 # animate :)
 ani = animation.ArtistAnimation(fig=fig, artists=artists, interval=50) # adjust interval to speed up/slow down animation
+# To save the animation using Pillow as a gif
+# writer = animation.PillowWriter(fps=15,
+#                                 metadata=dict(artist=''),
+#                                 bitrate=1800)
+# ani.save('cantor.gif', writer=writer)
 plt.show()
